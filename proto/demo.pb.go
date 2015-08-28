@@ -3,7 +3,7 @@
 // DO NOT EDIT!
 
 /*
-Package proto is a generated protocol buffer package.
+Package demo is a generated protocol buffer package.
 
 It is generated from these files:
 	proto/demo.proto
@@ -12,9 +12,9 @@ It has these top-level messages:
 	Greeting
 	Reply
 */
-package proto
+package demo
 
-import proto1 "github.com/golang/protobuf/proto"
+import proto "github.com/golang/protobuf/proto"
 
 import (
 	context "golang.org/x/net/context"
@@ -26,14 +26,14 @@ var _ context.Context
 var _ grpc.ClientConn
 
 // Reference imports to suppress errors if they are not otherwise used.
-var _ = proto1.Marshal
+var _ = proto.Marshal
 
 type Greeting struct {
 	Message string `protobuf:"bytes,1,opt,name=message" json:"message,omitempty"`
 }
 
 func (m *Greeting) Reset()         { *m = Greeting{} }
-func (m *Greeting) String() string { return proto1.CompactTextString(m) }
+func (m *Greeting) String() string { return proto.CompactTextString(m) }
 func (*Greeting) ProtoMessage()    {}
 
 type Reply struct {
@@ -41,7 +41,7 @@ type Reply struct {
 }
 
 func (m *Reply) Reset()         { *m = Reply{} }
-func (m *Reply) String() string { return proto1.CompactTextString(m) }
+func (m *Reply) String() string { return proto.CompactTextString(m) }
 func (*Reply) ProtoMessage()    {}
 
 func init() {
@@ -63,7 +63,7 @@ func NewDemoClient(cc *grpc.ClientConn) DemoClient {
 
 func (c *demoClient) SayHello(ctx context.Context, in *Greeting, opts ...grpc.CallOption) (*Reply, error) {
 	out := new(Reply)
-	err := grpc.Invoke(ctx, "/proto.Demo/SayHello", in, out, c.cc, opts...)
+	err := grpc.Invoke(ctx, "/demo.Demo/SayHello", in, out, c.cc, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func RegisterDemoServer(s *grpc.Server, srv DemoServer) {
 
 func _Demo_SayHello_Handler(srv interface{}, ctx context.Context, buf []byte) (interface{}, error) {
 	in := new(Greeting)
-	if err := proto1.Unmarshal(buf, in); err != nil {
+	if err := proto.Unmarshal(buf, in); err != nil {
 		return nil, err
 	}
 	out, err := srv.(DemoServer).SayHello(ctx, in)
@@ -93,7 +93,7 @@ func _Demo_SayHello_Handler(srv interface{}, ctx context.Context, buf []byte) (i
 }
 
 var _Demo_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.Demo",
+	ServiceName: "demo.Demo",
 	HandlerType: (*DemoServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
