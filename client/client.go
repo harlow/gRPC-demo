@@ -1,7 +1,7 @@
 package main
 
 import (
-	pb "../proto/demo"
+	pb "github.com/harlow/gRPC-demo/proto/demo"
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
